@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class GamePiece:
-    def __init__(self, label: str = '') -> GamePiece:
+    def __init__(self, label: str = '-') -> GamePiece:
         self._label = label
 
     @property
@@ -12,7 +12,7 @@ class GamePiece:
         elif self._label.lower() == 'o':
             return 2
         else:
-            return '-'
+            return 0
 
     def __str__(self) -> str:
         return self._label.upper()

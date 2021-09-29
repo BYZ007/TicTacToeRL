@@ -1,6 +1,6 @@
 from __future__ import annotations
 from utils.custom_types import Position
-from GamePiece import GamePiece
+from game_board.GamePiece import GamePiece
 from typing import List
 
 
@@ -58,3 +58,8 @@ class GameBoard:
                     state += 3 ** (i * 3 + j)
 
         return state
+
+    @staticmethod
+    def printBoard(gameBoard: GameBoard) -> None:
+        for i in range(gameBoard.size):
+            print(gameBoard.board[i])
