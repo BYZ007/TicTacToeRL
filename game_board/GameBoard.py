@@ -61,5 +61,20 @@ class GameBoard:
     @staticmethod
     def printBoard(gameBoard: GameBoard) -> None:
         for i in range(gameBoard.size):
-            print(' '.join([str(piece) for piece in gameBoard.board[i]]))
-        print('\n')
+            print(" ".join([str(piece) for piece in gameBoard.board[i]]))
+        print("\n")
+
+    @staticmethod
+    def isMoveValid(gameBoard: GameBoard, pos: Position) -> bool:
+        if (
+            pos.i < 0
+            or pos.j < 0
+            or pos.i >= gameBoard.size
+            or pos.j >= gameBoard.size
+        ):
+            return False
+
+        if gameBoard.board[pos.i][pos.j].state_value != 0:
+            return False
+
+        return True
