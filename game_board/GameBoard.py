@@ -5,7 +5,7 @@ from typing import List
 
 
 class GameBoard:
-    def __init__(self, size: int) -> GameBoard:
+    def __init__(self, size: int) -> None:
         self._size: int = size
         self._board: List[List[GamePiece]] = [
             [GamePiece() for _ in range(size)] for _ in range(size)
@@ -21,11 +21,6 @@ class GameBoard:
     def board(self) -> List[List[GamePiece]]:
         return self._board
 
-    @board.setter
-    def board(self, pos: Position, game_piece: GamePiece) -> None:
-        self._board[pos.i][pos.j] = game_piece
-        self._is_dirty = True
-
     @property
     def state(self) -> int:
         if self._is_dirty:
@@ -33,6 +28,10 @@ class GameBoard:
             self._is_dirty = False
 
         return self._state
+
+    def setBoard(self, pos: Position, game_piece: GamePiece) -> None:
+        self._board[pos.i][pos.j] = game_piece
+        self._is_dirty = True
 
     @staticmethod
     def boardToState(gameBoard: GameBoard) -> int:
@@ -62,4 +61,5 @@ class GameBoard:
     @staticmethod
     def printBoard(gameBoard: GameBoard) -> None:
         for i in range(gameBoard.size):
-            print(gameBoard.board[i])
+            print(' '.join([str(piece) for piece in gameBoard.board[i]]))
+        print('\n')
